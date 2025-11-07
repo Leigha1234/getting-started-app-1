@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-app-service
+spec:                   # <--- MUST be flush left
+  type: NodePort        # <--- MUST be indented 2 spaces
+  selector:             # <--- MUST be indented 2 spaces
+    app: todo-app       # <--- MUST be indented 4 spaces
+  ports:                # <--- MUST be indented 2 spaces
+    - port: 3000        # <--- MUST be indented 4 spaces (dash is part of indentation)
+      targetPort: 3000
+      nodePort: 31000

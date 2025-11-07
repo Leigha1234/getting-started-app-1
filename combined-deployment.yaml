@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: combined-app-deployment
+  namespace: students-space
+  labels:
+    app: combined-stack
+spec:
+  replicas: 3 # Creates 3 Pods, each with both containers
+  selector:
+    matchLabels:
+      app: combined-stack
+  template:
+    metadata:
+      labels:
+        app: combined-stack
+    spec:
+      containers:
+      # Container 1: hello-nginx
+      - name: nginx-sidecar 
+        image: nginx:1.27.0 # Using the version from Activity 5
+        ports:
+        - containerPort: 80
+      
+      # Container 2: todo-app
+      - name: todo-container
+        image: leigha1234/todo-app:v1 # Your custom Todo-App image
+        ports:
+        - containerPort: 3000

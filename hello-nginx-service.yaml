@@ -1,0 +1,13 @@
+# hello-nginx-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-nginx-service
+spec:
+  type: NodePort
+  selector:
+    app: hello-nginx
+  ports:
+    - port: 80           # The service's internal ClusterIP port
+      targetPort: 80     # The container port (Nginx default)
+      nodePort: 30080    # The specific NodePort for external access
